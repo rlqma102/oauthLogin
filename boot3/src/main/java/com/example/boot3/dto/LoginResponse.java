@@ -14,7 +14,6 @@ public class LoginResponse {
     private String email;
     private String imageUrl;
     private Role role;
-
     private String auth;
     private String tokenType;
     private String accessToken;

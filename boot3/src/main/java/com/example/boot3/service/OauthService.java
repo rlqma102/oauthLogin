@@ -4,7 +4,7 @@ import com.example.boot3.enums.OauthAttributes;
 import com.example.boot3.provider.JwtTokenProvider;
 import com.example.boot3.provider.OauthProvider;
 import com.example.boot3.dto.LoginResponse;
-import com.example.boot3.dto.Member;
+import com.example.boot3.entity.Member;
 import com.example.boot3.dto.OauthTokenResponse;
 import com.example.boot3.dto.UserProfile;
 import com.example.boot3.repository.InMemoryProviderRepository;
@@ -74,7 +74,7 @@ public class OauthService {
 
     private Member saveOrUpdate(UserProfile userProfile) {
         Member member = memberRepository.findByOauthId(userProfile.getOauthId())
-                .map(entity -> entity.update(userProfile.getName(), userProfile.getEmail(), userProfile.getImageUrl()))
+                .map(entity -> entity.update(userProfile.getName(), userProfile.getEmail(), userProfile.getImageUrl(), userProfile.toMember().getAuth(), userProfile.toMember().getPassword()))
                 .orElseGet(userProfile::toMember);
         return memberRepository.save(member);
     }

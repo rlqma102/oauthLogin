@@ -33,16 +33,20 @@
 </template>
 
 <script>
-import store from "@/scripts/store";
+//import store from "@/scripts/store";
 import router from "@/scripts/router";
+//import axios from "axios";
 
 export default {
   name: 'Header',
   setup() {
     const logout=()=> {
-      store.commit('setAccount', 0);
-      sessionStorage.removeItem("id");
-      router.push({path:"/"})
+        sessionStorage.clear();
+        localStorage.clear()
+      alert("로그아웃 되었습니다")
+      // store.commit('setAccount', 0);
+
+      router.push({path:"/login"})
     }
     return {logout};
   }
